@@ -1,0 +1,1 @@
+import{x as e,xt as t}from"./vue.runtime.esm-bundler-BLjPBZvV.js";import{n}from"./useId-Butqor8F.js";function r(r){let i=n({locale:t(`en`)});return e(()=>r?.value||i.locale?.value||`en`)}export{r as t};

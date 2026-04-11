@@ -1,0 +1,1 @@
+import{Ot as e,x as t}from"./vue.runtime.esm-bundler-BLjPBZvV.js";import{a as n}from"./dist-BgjsW2M1.js";function r(r){return t(()=>e(r)?!!n(r)?.closest(`form`):!0)}export{r as t};

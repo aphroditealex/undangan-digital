@@ -1,0 +1,1 @@
+import{nt as e,t}from"./vue.runtime.esm-bundler-BLjPBZvV.js";import{t as n}from"./createContext-Cs14mg5f.js";var[r,i]=n(`ConfigProvider`),a=0;function o(n,i=`reka`){if(n)return n;let o;return o=`useId`in t?e?.():r({useId:void 0}).useId?.()??`${++a}`,i?`${i}-${o}`:o}export{r as n,o as t};
