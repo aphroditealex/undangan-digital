@@ -46,7 +46,7 @@ const config = computed(() => store.introConfig);
 
 function enterRoom() {
   // Play click sound
-  const audio = new Audio("/assets/templates/aruma/waterdrop-click.mp3");
+  const audio = new Audio("/assets/music/waterdrop-click.mp3");
   audio.volume = 0.3;
   audio.play().catch(() => {});
 

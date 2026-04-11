@@ -1,25 +1,25 @@
 /**
- * Mock invitation data based on the API response from abadikan.id
+ * Mock invitation data based on the API response from abaGroomn.id
  * This will be replaced with actual API calls in production
  */
 export const mockInvitationData = {
   id: "5c11a770-818d-4c78-8965-5751574f3432",
-  slug: "dika-putri-jawa",
+  slug: "Groom-Bride-jawa",
   status: "PUBLISHED",
   gift_type: "manual",
   groom: {
-    url: "https://os.abadikan.id/invitations/yogya-beach/4%3A3%20-%206.webp",
-    name: "Dika Alexander",
-    nickname: "Dika",
-    description: "Putra pertama dari Bapak Alexander dan Ibu Melinda",
-    instagram_username: "dika"
+    url: "/assets/images/groom.jpg",
+    name: "Groom",
+    nickname: "Groom",
+    description: "Putra pertama dari Bapak Groom dan Ibu Groom",
+    instagram_username: "groom"
   },
   bride: {
-    url: "https://os.abadikan.id/invitations/yogya-beach/4%3A3%20-%205.webp",
-    name: "Putri Thompson",
-    nickname: "Putri",
-    description: "Putri dari Bapak Thompson dan Ibu Rose",
-    instagram_username: "Putri"
+    url: "/assets/images/bride.jpg",
+    name: "Bride",
+    nickname: "Bride",
+    description: "Bride dari Bapak Bride dan Ibu Bride",
+    instagram_username: "bride"
   },
   events: [
     {
@@ -30,82 +30,106 @@ export const mockInvitationData = {
       time_end: "21:00",
       name: "Resepsi",
       venue: {
-        url: "https://maps.app.goo.gl/WgtktFHCV6dM1nWj9",
-        name: "The Ritz-Carlton Jakarta, Mega Kuningan",
-        image: "https://os.abadikan.id/invitations/yogya-beach/ritz-cartlon.webp",
-        address: "Jl. Dr. Ide Anak Agung Gde Agung Kav.E.1.1 No.1, Kuningan, Jakarta Selatan"
+        url: "https://share.google/e7ZrKSTtQ6zzxgOpT",
+        name: "Ballroom Shangri-La Hotel Jakarta",
+        image: "/assets/images/venue.webp",
+        address: "Jl. Jenderal Sudirman No.Kav. 1, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10220"
       }
     }
   ],
-  quote: '"Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup dari jenismu sendiri, supaya kamu merasa tenteram di sampingnya, dan dijadikan-Nya di antaramu rasa kasih dan sayang."\n\n— Ar-Rum: 21',
+  quote: '"Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup dari jenismu sendiri, supaya kamu merasa tenteram di sampingnya, dan dijaGroomn-Nya di antaramu rasa kasih dan sayang."\n\n— Ar-Rum: 21',
   gallery: [
-    { key: "gallery", url: "https://os.abadikan.id/invitations/yogya-beach/16%3A9%20-%202.webp", label: "Gallery 1", ratio: { width: 16, height: 9 } },
-    { key: "gallery", url: "https://os.abadikan.id/invitations/yogya-beach/4%3A3%20-%204.webp", label: "Gallery 6", ratio: { width: 3, height: 4 } },
-    { key: "gallery", url: "https://os.abadikan.id/invitations/yogya-beach/4%3A3%20-%201.webp", label: "Gallery 2", ratio: { width: 3, height: 4 } },
-    { key: "gallery", url: "https://os.abadikan.id/invitations/yogya-beach/4%3A3%20-%202.webp", label: "Gallery 3", ratio: { width: 3, height: 4 } },
-    { key: "gallery", url: "https://os.abadikan.id/invitations/yogya-beach/16%3A9%20-%203.webp", label: "Gallery 4", ratio: { width: 16, height: 9 } },
-    { key: "gallery", url: "https://os.abadikan.id/invitations/yogya-beach/4%3A3%20-%203.webp", label: "Gallery 5", ratio: { width: 3, height: 4 } }
+    { key: "gallery", url: "/assets/images/galleries/prewedd-1.webp", label: "Gallery 1", ratio: { width: 16, height: 9 } },
+    { key: "gallery", url: "/assets/images/galleries/prewedd-2.webp", label: "Gallery 2", ratio: { width: 3, height: 4 } },
+    { key: "gallery", url: "/assets/images/galleries/prewedd-3.webp", label: "Gallery 3", ratio: { width: 3, height: 4 } },
+    { key: "gallery", url: "/assets/images/galleries/prewedd-4.webp", label: "Gallery 4", ratio: { width: 3, height: 4 } },
+    { key: "gallery", url: "/assets/images/galleries/prewedd-5.webp", label: "Gallery 5", ratio: { width: 3, height: 4 } }
   ],
-  love_story: [
-    {
-      image: "https://os.abadikan.id/invitation-images/love-story/599c6154-f8e7-4bc9-aa4d-bff2b53b1201/dc21daa9-89b3-4048-a407-b19dd4aefc9c.jpg",
-      title: "Agustus 2019 – Awal yang Tak Disangka",
-      description: "Tanpa pernah direncanakan, langkah kami dipertemukan di ruang kelas dan diskusi kelompok. Dari obrolan ringan yang sederhana, tumbuh rasa ingin tahu yang perlahan menjelma menjadi perhatian."
-    },
-    {
-      image: "https://os.abadikan.id/invitation-images/love-story/599c6154-f8e7-4bc9-aa4d-bff2b53b1201/a28ac245-2761-4b5c-89a9-a731b90afec7.jpg",
-      title: "2020 – Tahun Ujian & Pembuktian",
-      description: "Tahun penuh tantangan—jarak, kesibukan, dan perbedaan sempat mengetuk pintu hubungan kami. Namun justru di sanalah kami belajar, bahwa cinta bukan hanya tentang tawa."
-    },
-    {
-      image: "https://os.abadikan.id/invitation-images/love-story/599c6154-f8e7-4bc9-aa4d-bff2b53b1201/d62658a1-4cbe-4ad7-9d2c-f2b1bf969670.jpg",
-      title: "2021 – Saling Tumbuh, Saling Yakin",
-      description: "Kami berhenti meragu dan mulai percaya bahwa perjalanan ini layak diperjuangkan. Dengan segala perbedaan, kami menemukan irama untuk tumbuh bersama."
-    },
-    {
-      image: "https://os.abadikan.id/invitation-images/love-story/599c6154-f8e7-4bc9-aa4d-bff2b53b1201/2ba83221-e5c6-41b9-8c50-d16d72cbfdad.jpg",
-      title: "2022 – Menenun Mimpi Bersama",
-      description: "Setiap percakapan berubah menjadi rencana, setiap langkah menjadi pondasi. Kami mulai menenun mimpi yang bukan lagi milikku atau miliknya, melainkan milik 'kita'."
-    },
-    {
-      image: "https://os.abadikan.id/invitation-images/love-story/599c6154-f8e7-4bc9-aa4d-bff2b53b1201/cdb94cbc-bc7e-43f8-a7aa-d3029723a548.jpg",
-      title: "2023 – Keyakinan yang Mantap",
-      description: "Waktu berjalan, rasa ini semakin teguh. Kami menyadari bahwa bukan lagi soal mencari siapa yang sempurna, tapi bagaimana kami saling melengkapi kekurangan."
-    }
-  ],
-  dresscode: [
-    { name: "Biru Langit", color_hex: "#4DABF7", description: "Warna yang melambangkan ketenangan dan kedamaian" },
-    { name: "Biru Muda", color_hex: "#74C0FC", description: "Warna yang memberikan kesan fresh dan modern" },
-    { name: "Biru Pastel", color_hex: "#A5D8FF", description: "Warna lembut yang cocok untuk suasana santai" }
-  ],
+  // love_story: [
+  //   {
+  //     image: "https://os.abaGroomn.id/invitation-images/love-story/599c6154-f8e7-4bc9-aa4d-bff2b53b1201/dc21daa9-89b3-4048-a407-b19dd4aefc9c.jpg",
+  //     title: "Agustus 2019 – Awal yang Tak Disangka",
+  //     description: "Tanpa pernah direncanakan, langkah kami dipertemukan di ruang kelas dan diskusi kelompok. Dari obrolan ringan yang sederhana, tumbuh rasa ingin tahu yang perlahan menjelma menjadi perhatian."
+  //   },
+  //   {
+  //     image: "https://os.abaGroomn.id/invitation-images/love-story/599c6154-f8e7-4bc9-aa4d-bff2b53b1201/a28ac245-2761-4b5c-89a9-a731b90afec7.jpg",
+  //     title: "2020 – Tahun Ujian & Pembuktian",
+  //     description: "Tahun penuh tantangan—jarak, kesibukan, dan perbedaan sempat mengetuk pintu hubungan kami. Namun justru di sanalah kami belajar, bahwa cinta bukan hanya tentang tawa."
+  //   },
+  //   {
+  //     image: "https://os.abaGroomn.id/invitation-images/love-story/599c6154-f8e7-4bc9-aa4d-bff2b53b1201/d62658a1-4cbe-4ad7-9d2c-f2b1bf969670.jpg",
+  //     title: "2021 – Saling Tumbuh, Saling Yakin",
+  //     description: "Kami berhenti meragu dan mulai percaya bahwa perjalanan ini layak diperjuangkan. Dengan segala perbedaan, kami menemukan irama untuk tumbuh bersama."
+  //   },
+  //   {
+  //     image: "https://os.abaGroomn.id/invitation-images/love-story/599c6154-f8e7-4bc9-aa4d-bff2b53b1201/2ba83221-e5c6-41b9-8c50-d16d72cbfdad.jpg",
+  //     title: "2022 – Menenun Mimpi Bersama",
+  //     description: "Setiap percakapan berubah menjadi rencana, setiap langkah menjadi pondasi. Kami mulai menenun mimpi yang bukan lagi milikku atau miliknya, melainkan milik 'kita'."
+  //   },
+  //   {
+  //     image: "https://os.abaGroomn.id/invitation-images/love-story/599c6154-f8e7-4bc9-aa4d-bff2b53b1201/cdb94cbc-bc7e-43f8-a7aa-d3029723a548.jpg",
+  //     title: "2023 – Keyakinan yang Mantap",
+  //     description: "Waktu berjalan, rasa ini semakin teguh. Kami menyadari bahwa bukan lagi soal mencari siapa yang sempurna, tapi bagaimana kami saling melengkapi kekurangan."
+  //   }
+  // ],
+  // dresscode: [
+  //   { name: "Biru Langit", color_hex: "#4DABF7", description: "Warna yang melambangkan ketenangan dan kedamaian" },
+  //   { name: "Biru Muda", color_hex: "#74C0FC", description: "Warna yang memberikan kesan fresh dan modern" },
+  //   { name: "Biru Pastel", color_hex: "#A5D8FF", description: "Warna lembut yang cocok untuk suasana santai" }
+  // ],
   gifts: [
     {
       id: "2e9d47a0-a794-4153-b476-010f3f97b19f",
-      account_name: "Putri",
+      account_name: "Faizal",
       account_number: "123123123",
       bank: {
-        name: "Bank Jago",
-        code: "ID_JAGO",
-        logo: "https://os.abadikan.id/bank/jago.svg"
+        name: "Bank Mandiri",
+        code: "ID_MANDIRI",
+        logo: "/assets/images/bank/mandiri.svg"
       }
     },
     {
       id: "8ed2f59b-1539-482e-909f-4ad40d1475f2",
-      account_name: "Dika",
+      account_name: "Faizal",
       account_number: "123123123",
       bank: {
         name: "Bank Central Asia (BCA)",
         code: "ID_BCA",
-        logo: "https://dashboard.xendit.co/assets/images/bca-logo.svg"
+        logo: "/assets/images/bank/bank-bca.svg"
       }
     }
   ],
   messages: [
-    { id: "1", message: "Selamat menempuh hidup baru! Semoga bahagia selalu 💕", guest_book: { name: "Rizky & Michelle", code: "EXI54K" }, created_at: "2026-01-31T09:58:01.539Z" },
-    { id: "2", message: "Cheers to love, laughter, and happily ever after! So happy for you both, Dika & Putri!", guest_book: { name: "Daniel", code: "ABC123" }, created_at: "2025-12-30T06:52:06.642Z" },
-    { id: "3", message: "A new chapter begins! Semoga cinta kalian tumbuh setiap hari, Dika & Putri.", guest_book: { name: "William", code: "DEF456" }, created_at: "2025-12-30T06:51:40.039Z" },
-    { id: "4", message: "Barakallahu lakuma wa baraka 'alaikuma 🤲", guest_book: { name: "Sarah", code: "GHI789" }, created_at: "2025-12-09T13:47:10.922Z" },
-    { id: "5", message: "Waah akhirnya! Semoga jadi keluarga sakinah mawaddah warahmah 🕊️", guest_book: { name: "Ahmad", code: "JKL012" }, created_at: "2025-12-06T15:51:34.125Z" }
+    { 
+      id: "1", 
+      message: "Selamat menempuh hidup baru! Semoga bahagia selalu 💕", 
+      guest_book: { name: "Rizky & Michelle", code: "EXI54K" }, 
+      created_at: "2026-01-31T09:58:01.539Z" 
+    },
+    { 
+      id: "2", 
+      message: "Cheers to love, laughter, and happily ever after! So happy for you both, Groom & Bride!", 
+      guest_book: { name: "Daniel", code: "ABC123" }, 
+      created_at: "2025-12-30T06:52:06.642Z" 
+    },
+    { 
+      id: "3", 
+      message: "A new chapter begins! Semoga cinta kalian tumbuh setiap hari, Groom & Bride.", 
+      guest_book: { name: "William", code: "DEF456" }, 
+      created_at: "2025-12-30T06:51:40.039Z" 
+    },
+    { 
+      id: "4", 
+      message: "Barakallahu lakuma wa baraka 'alaikuma 🤲", 
+      guest_book: { name: "Sarah", code: "GHI789" }, 
+      created_at: "2025-12-09T13:47:10.922Z" 
+    },
+    { 
+      id: "5", 
+      message: "Waah akhirnya! Semoga jadi keluarga sakinah mawaddah warahmah 🕊️", 
+      guest_book: { name: "Ahmad", code: "JKL012" }, 
+      created_at: "2025-12-06T15:51:34.125Z" 
+    }
   ],
   guest_book: {
     id: "259eef09-bf74-4d5f-9ef3-14ce72aa380e",
@@ -123,25 +147,25 @@ export const mockInvitationData = {
         title: {
           prefix: "The Wedding of"
         },
-        background_url: "/assets/templates/aruma/loadingscreen-raw.webp",
+        background_url: "/assets/images/loadingscreen-raw.webp",
         button: {
-          default_image: "/assets/templates/aruma/button-loading-screen.webp"
+          default_image: "/assets/images/button-loading-screen.webp"
         }
       },
       preloader: {
-        background_url: "/assets/templates/aruma/preloader/preloader-screen.webp",
+        background_url: "/assets/preloader/preloader-screen.webp",
         decorations: [
-          { id: "giftbox-xl", image_url: "/assets/templates/aruma/preloader/preloader-giftbox-xl-2.webp", position_class: "top-left" },
-          { id: "giftbox-sm", image_url: "/assets/templates/aruma/preloader/preloader-giftbox-sm-2.webp", position_class: "bottom-right" },
-          { id: "love-xl", image_url: "/assets/templates/aruma/preloader/preloader-love-xl.webp", position_class: "top-right" },
-          { id: "love-sm", image_url: "/assets/templates/aruma/preloader/preloader-love-sm.webp", position_class: "bottom-left" }
+          { id: "giftbox-xl", image_url: "/assets/preloader/preloader-giftbox-xl-2.webp", position_class: "top-left" },
+          { id: "giftbox-sm", image_url: "/assets/preloader/preloader-giftbox-sm-2.webp", position_class: "bottom-right" },
+          { id: "love-xl", image_url: "/assets/preloader/preloader-love-xl.webp", position_class: "top-right" },
+          { id: "love-sm", image_url: "/assets/preloader/preloader-love-sm.webp", position_class: "bottom-left" }
         ],
         main_indicator: {
-          image_url: "/assets/templates/aruma/preloader/preloader-image.webp",
+          image_url: "/assets/preloader/preloader-image.webp",
           animation_class: "pendulum"
         },
         text_indicator: {
-          image_url: "/assets/templates/aruma/preloader/preloader-indicator-text.webp"
+          image_url: "/assets/preloader/preloader-indicator-text.webp"
         }
       },
       ui_text: {
@@ -215,7 +239,7 @@ export const mockInvitationData = {
           name: "Tentang Kami",
           position: { top: "35%", left: "35%" },
           size: { width: "25%", maxWidth: "25%" },
-          image_url: "/assets/templates/aruma/images/about-us.webp",
+          image_url: "/assets/images/about-us.webp",
           modal_type: "bride-groom",
           description: "Lihat momen spesial kami sebagai pasangan yang sedang berbahagia.",
           zIndex: 20,
@@ -226,7 +250,7 @@ export const mockInvitationData = {
         //   name: "Busana & Nuansa",
         //   position: { top: "32%", right: "20%" },
         //   size: { width: "17%", maxWidth: "17%" },
-        //   image_url: "/assets/templates/aruma/images/dresscode.webp",
+        //   image_url: "/assets/images/dresscode.webp",
         //   modal_type: "dresscode",
         //   description: "Kenali warna pilihan kami agar kamu bisa tampil serasi di hari istimewa.",
         //   zIndex: 20,
@@ -237,7 +261,7 @@ export const mockInvitationData = {
         //   name: "Kisah Cinta Kami",
         //   position: { top: "0", left: "41%" },
         //   size: { width: "15%", maxWidth: "15%" },
-        //   image_url: "/assets/templates/aruma/images/love-story.webp",
+        //   image_url: "/assets/images/love-story.webp",
         //   modal_type: "love-story",
         //   description: "Ikuti kisah kami dari pertemuan pertama hingga jadi satu tujuan.",
         //   zIndex: 20,
@@ -248,7 +272,7 @@ export const mockInvitationData = {
           name: "Galeri Cerita Kami",
           position: { top: "31%", left: "12%" },
           size: { width: "20%", maxWidth: "20%" },
-          image_url: "/assets/templates/aruma/images/gallery.webp",
+          image_url: "/assets/images/gallery.webp",
           modal_type: "gallery-book",
           description: "Lihat momen kebersamaan kami yang penuh warna dan cerita.",
           zIndex: 21,
@@ -259,7 +283,7 @@ export const mockInvitationData = {
           name: "Waktu & Tempat",
           position: { top: "28%", right: "17%" },
           size: { width: "23%", maxWidth: "23%" },
-          image_url: "/assets/templates/aruma/images/date-venue.webp",
+          image_url: "/assets/images/date-venue.webp",
           modal_type: "location",
           description: "Lihat lokasi akad dan resepsi lengkap dengan petunjuk arah ke tempat acara.",
           zIndex: 20,
@@ -270,7 +294,7 @@ export const mockInvitationData = {
           name: "Konfirmasi Kehadiran",
           position: { top: "58%", right: "12%" },
           size: { width: "22%", maxWidth: "22%" },
-          image_url: "/assets/templates/aruma/images/rsvp.webp",
+          image_url: "/assets/images/rsvp.webp",
           modal_type: "guestbook",
           description: "Tinggalkan pesan atau doa hangat untuk kami berdua.",
           zIndex: 20,
@@ -281,7 +305,7 @@ export const mockInvitationData = {
           name: "Kado & Doa dari Jauh",
           position: { right: "1%", bottom: "1%" },
           size: { width: "25%", maxWidth: "25%" },
-          image_url: "/assets/templates/aruma/images/gift.webp",
+          image_url: "/assets/images/gift.webp",
           modal_type: "giftbox",
           description: "Kirim hadiah atau dukungan dari jauh dengan penuh cinta.",
           zIndex: 20,
@@ -289,7 +313,7 @@ export const mockInvitationData = {
         }
       ],
       main_content: {
-        background_url: "/assets/templates/aruma/images/background.webp"
+        background_url: "/assets/images/background.webp"
       }
     }
   },

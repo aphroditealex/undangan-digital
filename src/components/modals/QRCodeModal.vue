@@ -1,11 +1,19 @@
 <template>
   <div class="qr-modal">
     <h2 class="section-title">Akses Masuk (QR Code)</h2>
-    <p class="section-subtitle">Tunjukkan QR Code ini kepada penerima tamu/usher saat Anda tiba di lokasi acara.</p>
-    
+    <p class="section-subtitle">
+      Tunjukkan QR Code ini kepada panitia saat Anda tiba di lokasi acara.
+    </p>
+
     <div class="qr-wrapper">
       <div class="qr-container">
-        <qrcode-vue :value="store.guestCode" :size="200" level="H" render-as="svg" foreground="#ad2041" />
+        <qrcode-vue
+          :value="store.guestCode"
+          :size="200"
+          level="H"
+          render-as="svg"
+          foreground="#ad2041"
+        />
       </div>
     </div>
 
@@ -21,10 +29,10 @@
 </template>
 
 <script setup>
-import { useInvitationStore } from '@/stores/invitation'
-import QrcodeVue from 'qrcode.vue'
+import { useInvitationStore } from "@/stores/invitation";
+import QrcodeVue from "qrcode.vue";
 
-const store = useInvitationStore()
+const store = useInvitationStore();
 </script>
 
 <style scoped>
