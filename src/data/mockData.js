@@ -110,7 +110,7 @@ export const mockInvitationData = {
   guest_book: {
     id: "259eef09-bf74-4d5f-9ef3-14ce72aa380e",
     code: "EXI54K",
-    name: "Rizky & Michelle",
+    name: "Faizal & Partner",
     response: "ACCEPT",
     quota: 1,
     greetings: "Dear"

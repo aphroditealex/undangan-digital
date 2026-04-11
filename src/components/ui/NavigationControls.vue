@@ -62,7 +62,7 @@ import { useInvitationStore } from '@/stores/invitation'
 const store = useInvitationStore()
 
 function showQRInfo() {
-  alert('QR Code Kehadiran — Fitur ini akan tersedia di versi lengkap!')
+  store.openModal('qrcode')
 }
 </script>
 

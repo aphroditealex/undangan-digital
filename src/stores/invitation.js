@@ -1,6 +1,9 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { mockInvitationData } from '@/data/mockData'
+import { io } from 'socket.io-client'
+
+const socket = io('http://localhost:3001')
 
 export const useInvitationStore = defineStore('invitation', () => {
   // State
@@ -12,6 +15,10 @@ export const useInvitationStore = defineStore('invitation', () => {
   const showWishes = ref(true)
   const isLoading = ref(true)
   const guestCode = ref('')
+  
+  // API State
+  const apiMessages = ref([])
+  const rsvpStatus = ref(null) // null, 'loading', 'success', 'error'
 
   // Computed
   const groomData = computed(() => invitation.value?.groom || {})
@@ -21,7 +28,13 @@ export const useInvitationStore = defineStore('invitation', () => {
   const loveStory = computed(() => invitation.value?.love_story || [])
   const dresscode = computed(() => invitation.value?.dresscode || [])
   const gifts = computed(() => invitation.value?.gifts || [])
-  const messages = computed(() => invitation.value?.messages || [])
+  const messages = computed(() => {
+    // Merge API messages with mock messages, or just use API if it has data
+    if (apiMessages.value.length > 0) {
+      return apiMessages.value
+    }
+    return invitation.value?.messages || []
+  })
   const guestBook = computed(() => invitation.value?.guest_book || {})
   const quote = computed(() => invitation.value?.quote || '')
   const templateVariant = computed(() => invitation.value?.template_variant?.value || {})
@@ -55,6 +68,66 @@ export const useInvitationStore = defineStore('invitation', () => {
     // Use mock data
     invitation.value = mockInvitationData
     isLoading.value = false
+
+    // Fetch initial API data
+    fetchMessages()
+    checkRsvp()
+
+    // Listen for live ws real-time updates
+    socket.on('new_wish', (newWish) => {
+      // Add the message to the very top!
+      apiMessages.value.unshift(newWish)
+    })
+  }
+
+  async function fetchMessages() {
+    try {
+      const res = await fetch(`http://localhost:3001/api/v1/messages?limit=20`)
+      const data = await res.json()
+      if (data.success) {
+        apiMessages.value = data.data
+      }
+    } catch (e) {
+      console.error('Failed to fetch messages:', e)
+    }
+  }
+
+  async function checkRsvp() {
+    if (!guestCode.value) return
+    try {
+      const res = await fetch(`http://localhost:3001/api/v1/rsvp/check?code=${guestCode.value}`)
+      const data = await res.json()
+      if (data.hasSubmitted) {
+        rsvpStatus.value = 'success'
+      }
+    } catch (e) {
+      console.error('Failed to check RSVP:', e)
+    }
+  }
+
+  async function submitRsvp(payload) {
+    rsvpStatus.value = 'loading'
+    try {
+      const res = await fetch(`http://localhost:3001/api/v1/rsvp`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...payload, code: guestCode.value })
+      })
+      const data = await res.json()
+      
+      if (data.success) {
+        rsvpStatus.value = 'success'
+        // No need to fetchMessages() anymore because the socket will broadcast it immediately!
+        return { success: true }
+      } else {
+        rsvpStatus.value = 'error'
+        return { success: false, message: data.message }
+      }
+    } catch (e) {
+      console.error('Failed to submit RSVP:', e)
+      rsvpStatus.value = 'error'
+      return { success: false, message: 'Terjadi kesalahan server saat menyimpan data.' }
+    }
   }
 
   function setScreen(screen) {
@@ -91,6 +164,8 @@ export const useInvitationStore = defineStore('invitation', () => {
     showWishes,
     isLoading,
     guestCode,
+    apiMessages,
+    rsvpStatus,
     // Computed
     groomData,
     brideData,
@@ -121,5 +196,8 @@ export const useInvitationStore = defineStore('invitation', () => {
     toggleMusic,
     toggleLight,
     toggleWishes,
+    fetchMessages,
+    checkRsvp,
+    submitRsvp,
   }
 })

@@ -1,1 +1,0 @@
-var e=`/assets/icons/logo.svg`;export{e as t};

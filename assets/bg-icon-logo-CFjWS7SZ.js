@@ -1,1 +1,0 @@
-var e=`/assets/landing-assets/imgs/bg/bg-icon-logo.svg`;export{e as t};

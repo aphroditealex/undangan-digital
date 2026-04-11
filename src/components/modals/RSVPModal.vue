@@ -70,8 +70,8 @@
         ></textarea>
       </div>
 
-      <button type="submit" class="submit-btn">
-        {{ uiText.submit_button || 'Kirim Konfirmasi' }}
+      <button type="submit" class="submit-btn" :disabled="store.rsvpStatus === 'loading'">
+        {{ store.rsvpStatus === 'loading' ? 'Loading...' : (uiText.submit_button || 'Kirim Konfirmasi') }}
       </button>
     </form>
 
@@ -79,6 +79,9 @@
     <div v-else class="success-state">
       <div class="success-icon">✓</div>
       <p class="success-text">{{ uiText.success_message || 'Terima kasih! Konfirmasi Anda telah diterima.' }}</p>
+      <button class="qr-access-btn" @click="store.openModal('qrcode')">
+        Tampilkan QR Code Kehadiran
+      </button>
     </div>
 
     <!-- Existing Messages -->
@@ -118,10 +121,22 @@ function decrementGuest() {
   if (form.value.guestCount > 1) form.value.guestCount--
 }
 
-function submitRSVP() {
-  // TODO: Send to backend API
-  console.log('RSVP submitted:', form.value)
-  submitted.value = true
+async function submitRSVP() {
+  if (!form.value.name) return
+
+  const result = await store.submitRsvp({
+    name: form.value.name,
+    phone: form.value.phone,
+    attendance: form.value.attendance,
+    guest_count: form.value.guestCount,
+    message: form.value.message
+  })
+
+  if (result.success) {
+    submitted.value = true
+  } else {
+    alert(result.message || 'Gagal mengirim RSVP. Coba lagi.')
+  }
 }
 </script>
 
@@ -296,6 +311,23 @@ function submitRSVP() {
   font-size: 14px;
   color: var(--color-text);
   line-height: 1.6;
+  margin-bottom: var(--space-lg);
+}
+
+.qr-access-btn {
+  padding: 10px 20px;
+  background: white;
+  color: var(--color-primary-dark);
+  border: 1.5px solid var(--color-primary);
+  border-radius: 20px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 700;
+  transition: all var(--transition-fast);
+}
+
+.qr-access-btn:hover {
+  background: var(--color-rose-light);
 }
 
 /* Messages */
