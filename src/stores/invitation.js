@@ -1,9 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { mockInvitationData } from '@/data/mockData'
-import { io } from 'socket.io-client'
-
-const socket = io('http://localhost:3001')
+import { supabase } from '@/lib/supabase'
 
 export const useInvitationStore = defineStore('invitation', () => {
   // State
@@ -29,7 +27,6 @@ export const useInvitationStore = defineStore('invitation', () => {
   const dresscode = computed(() => invitation.value?.dresscode || [])
   const gifts = computed(() => invitation.value?.gifts || [])
   const messages = computed(() => {
-    // Merge API messages with mock messages, or just use API if it has data
     if (apiMessages.value.length > 0) {
       return apiMessages.value
     }
@@ -69,24 +66,31 @@ export const useInvitationStore = defineStore('invitation', () => {
     invitation.value = mockInvitationData
     isLoading.value = false
 
-    // Fetch initial API data
+    // Fetch messages from Supabase
     fetchMessages()
     checkRsvp()
-
-    // Listen for live ws real-time updates
-    socket.on('new_wish', (newWish) => {
-      // Add the message to the very top!
-      apiMessages.value.unshift(newWish)
-    })
   }
 
   async function fetchMessages() {
     try {
-      const res = await fetch(`http://localhost:3001/api/v1/messages?limit=20`)
-      const data = await res.json()
-      if (data.success) {
-        apiMessages.value = data.data
-      }
+      const { data, error } = await supabase
+        .from('messages')
+        .select('id, name, code, message, created_at')
+        .order('created_at', { ascending: false })
+        .limit(20)
+
+      if (error) throw error
+
+      // Format to match frontend structure
+      apiMessages.value = (data || []).map(msg => ({
+        id: msg.id,
+        message: msg.message,
+        created_at: msg.created_at,
+        guest_book: {
+          name: msg.name,
+          code: msg.code
+        }
+      }))
     } catch (e) {
       console.error('Failed to fetch messages:', e)
     }
@@ -95,9 +99,14 @@ export const useInvitationStore = defineStore('invitation', () => {
   async function checkRsvp() {
     if (!guestCode.value) return
     try {
-      const res = await fetch(`http://localhost:3001/api/v1/rsvp/check?code=${guestCode.value}`)
-      const data = await res.json()
-      if (data.hasSubmitted) {
+      const { data, error } = await supabase
+        .from('rsvp')
+        .select('id')
+        .eq('code', guestCode.value)
+        .limit(1)
+
+      if (error) throw error
+      if (data && data.length > 0) {
         rsvpStatus.value = 'success'
       }
     } catch (e) {
@@ -108,25 +117,53 @@ export const useInvitationStore = defineStore('invitation', () => {
   async function submitRsvp(payload) {
     rsvpStatus.value = 'loading'
     try {
-      const res = await fetch(`http://localhost:3001/api/v1/rsvp`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...payload, code: guestCode.value })
-      })
-      const data = await res.json()
-      
-      if (data.success) {
-        rsvpStatus.value = 'success'
-        // No need to fetchMessages() anymore because the socket will broadcast it immediately!
-        return { success: true }
-      } else {
-        rsvpStatus.value = 'error'
-        return { success: false, message: data.message }
+      // 1. Insert RSVP
+      const { data: rsvpData, error: rsvpError } = await supabase
+        .from('rsvp')
+        .insert({
+          code: guestCode.value || null,
+          name: payload.name,
+          phone: payload.phone || null,
+          attendance: payload.attendance,
+          guest_count: payload.attendance === 'ACCEPT' ? (payload.guest_count || 1) : 0,
+          message: payload.message || null,
+        })
+        .select()
+        .single()
+
+      if (rsvpError) throw rsvpError
+
+      // 2. If there's a message, also insert into messages table
+      if (payload.message && payload.message.trim()) {
+        const { error: msgError } = await supabase
+          .from('messages')
+          .insert({
+            rsvp_id: rsvpData.id,
+            name: payload.name,
+            code: guestCode.value || null,
+            message: payload.message.trim(),
+          })
+
+        if (msgError) console.error('Message insert error:', msgError)
+
+        // Immediately add the new message to the local list (no socket needed)
+        apiMessages.value.unshift({
+          id: rsvpData.id,
+          message: payload.message.trim(),
+          created_at: new Date().toISOString(),
+          guest_book: {
+            name: payload.name,
+            code: guestCode.value
+          }
+        })
       }
+
+      rsvpStatus.value = 'success'
+      return { success: true }
     } catch (e) {
       console.error('Failed to submit RSVP:', e)
       rsvpStatus.value = 'error'
-      return { success: false, message: 'Terjadi kesalahan server saat menyimpan data.' }
+      return { success: false, message: 'Terjadi kesalahan saat menyimpan data.' }
     }
   }
 

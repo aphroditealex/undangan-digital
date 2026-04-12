@@ -80,6 +80,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { supabase } from '@/lib/supabase'
 
 const router = useRouter()
 const stats = ref({ total: 0, attending: 0, declining: 0, totalGuests: 0 })
@@ -94,16 +95,24 @@ function handleLogout() {
 async function fetchData() {
   loading.value = true
   try {
-    const urls = [
-      'http://localhost:3001/api/v1/rsvp/stats',
-      'http://localhost:3001/api/v1/rsvp'
-    ]
-    const [statsRes, guestsRes] = await Promise.all(urls.map(url => fetch(url)))
-    const statsData = await statsRes.json()
-    const guestsData = await guestsRes.json()
+    // Fetch all RSVPs
+    const { data, error } = await supabase
+      .from('rsvp')
+      .select('*')
+      .order('created_at', { ascending: false })
 
-    if (statsData.success) stats.value = statsData.data
-    if (guestsData.success) guests.value = guestsData.data
+    if (error) throw error
+    guests.value = data || []
+
+    // Calculate stats from the data
+    const total = guests.value.length
+    const attending = guests.value.filter(g => g.attendance === 'ACCEPT').length
+    const declining = guests.value.filter(g => g.attendance === 'DECLINE').length
+    const totalGuests = guests.value
+      .filter(g => g.attendance === 'ACCEPT')
+      .reduce((sum, g) => sum + (g.guest_count || 0), 0)
+
+    stats.value = { total, attending, declining, totalGuests }
   } catch (err) {
     console.error('Error fetching admin data:', err)
   } finally {

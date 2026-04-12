@@ -12,6 +12,18 @@ dist
 dist-ssr
 *.local
 
+# Server (deprecated - migrated to Supabase)
+server/
+
+# Environment variables
+.env
+.env.local
+
+# Database files
+*.db
+*.db-shm
+*.db-wal
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

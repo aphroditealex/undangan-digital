@@ -34,6 +34,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { Html5QrcodeScanner } from 'html5-qrcode'
+import { supabase } from '@/lib/supabase'
 
 const scanResult = ref(null)
 const scanStatus = ref(null) // 'success' or 'error'
@@ -64,7 +65,6 @@ function initScanner() {
 }
 
 async function onScanSuccess(decodedText, decodedResult) {
-  // Pause scanner
   if (html5QrcodeScanner) {
     html5QrcodeScanner.clear()
   }
@@ -72,20 +72,21 @@ async function onScanSuccess(decodedText, decodedResult) {
   scanResult.value = decodedText
   
   try {
-    const res = await fetch('http://localhost:3001/api/v1/rsvp/check-in', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ code: decodedText })
-    })
-    
-    const data = await res.json()
-    if (data.success) {
-      scanStatus.value = 'success'
-      scanMessage.value = data.message
-      guestData.value = data.data
-    } else {
+    const { data, error } = await supabase
+      .from('rsvp')
+      .select('*')
+      .eq('code', decodedText)
+      .order('created_at', { ascending: false })
+      .limit(1)
+      .single()
+
+    if (error || !data) {
       scanStatus.value = 'error'
-      scanMessage.value = data.message || 'Gagal memverifikasi tamu'
+      scanMessage.value = 'Data tamu tidak ditemukan'
+    } else {
+      scanStatus.value = 'success'
+      scanMessage.value = `Berhasil check-in untuk: ${data.name}`
+      guestData.value = data
     }
   } catch (error) {
     scanStatus.value = 'error'

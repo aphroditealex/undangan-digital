@@ -57,30 +57,17 @@ async function handleLogin() {
   errorMsg.value = ''
   isLoading.value = true
   
-  try {
-    const res = await fetch('http://localhost:3001/api/v1/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email: email.value,
-        password: password.value
-      })
-    })
-    
-    const data = await res.json()
-    if (data.success) {
-      // Simpan token ke localStorage sebagai tanda login
-      localStorage.setItem('adminToken', data.token)
-      router.push('/admin')
-    } else {
-      errorMsg.value = data.message || 'Login gagal'
-    }
-  } catch (error) {
-    console.error('Login error:', error)
-    errorMsg.value = 'Terjadi kesalahan sistem'
-  } finally {
-    isLoading.value = false
+  // Simple client-side auth (no backend needed for personal wedding invitation)
+  await new Promise(r => setTimeout(r, 500)) // Brief delay for UX
+  
+  if (email.value === 'admin@gmail.com' && password.value === 'Bismill@h123') {
+    localStorage.setItem('adminToken', 'authenticated')
+    router.push('/admin')
+  } else {
+    errorMsg.value = 'Email atau password salah!'
   }
+  
+  isLoading.value = false
 }
 </script>
 
