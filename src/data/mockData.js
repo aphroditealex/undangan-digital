@@ -85,7 +85,7 @@ export const mockInvitationData = {
       bank: {
         name: "Bank Mandiri",
         code: "ID_MANDIRI",
-        logo: "/assets/images/bank/mandiri.svg"
+        logo: "/assets/images/bank/mandiri.webp"
       }
     },
     {
@@ -95,7 +95,7 @@ export const mockInvitationData = {
       bank: {
         name: "Bank Central Asia (BCA)",
         code: "ID_BCA",
-        logo: "/assets/images/bank/bank-bca.svg"
+        logo: "/assets/images/bank/bca.webp"
       }
     }
   ],
