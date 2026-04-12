@@ -2,13 +2,14 @@
 
 Undangan pernikahan digital interaktif berbasis web dengan konsep **Interactive Room** — tamu dapat menjelajahi ruangan virtual, mengklik dekorasi untuk melihat informasi acara, mengisi RSVP, dan mengirim ucapan secara langsung.
 
-> **Live Demo**: [undangan-digital.vercel.app](https://undangan-digital.vercel.app)
+> **Live Demo**: [dikondangin.vercel.app](https://dikondangin.vercel.app)
 
 ---
 
 ## ✨ Fitur Utama
 
 ### 🎨 Frontend (Guest-Facing)
+
 - **Preloader Screen** — Animasi loading dengan dekorasi pendulum
 - **Intro / Cover Screen** — Halaman pembuka dengan nama tamu & tombol "Buka Undangan"
 - **Interactive Room** — Ruangan virtual dengan dekorasi yang bisa diklik
@@ -18,17 +19,19 @@ Undangan pernikahan digital interaktif berbasis web dengan konsep **Interactive 
 - **Zoom Prevention** — Mencegah pinch-to-zoom dan Ctrl+/- agar layout konsisten
 
 ### 📋 Modal System
-| Modal | Fungsi |
-|---|---|
-| **Welcome** | Sambutan & daftar menu navigasi |
-| **Bride & Groom** | Profil mempelai dengan card design |
-| **Gallery** | Galeri foto prewedding |
-| **Location** | Waktu & tempat acara + link Google Maps |
-| **RSVP / Guestbook** | Form konfirmasi kehadiran + daftar ucapan |
-| **Gift** | Info rekening untuk transfer digital |
-| **QR Code** | QR Code kehadiran untuk check-in di hari H |
+
+| Modal                | Fungsi                                     |
+| -------------------- | ------------------------------------------ |
+| **Welcome**          | Sambutan & daftar menu navigasi            |
+| **Bride & Groom**    | Profil mempelai dengan card design         |
+| **Gallery**          | Galeri foto prewedding                     |
+| **Location**         | Waktu & tempat acara + link Google Maps    |
+| **RSVP / Guestbook** | Form konfirmasi kehadiran + daftar ucapan  |
+| **Gift**             | Info rekening untuk transfer digital       |
+| **QR Code**          | QR Code kehadiran untuk check-in di hari H |
 
 ### 🔧 Admin Panel
+
 - **Dashboard** (`/admin`) — Statistik RSVP & tabel data tamu
 - **Login** (`/admin/login`) — Autentikasi untuk proteksi halaman admin
 - **QR Scanner** (`/admin/scanner`) — Scan QR Code tamu untuk check-in
@@ -38,27 +41,31 @@ Undangan pernikahan digital interaktif berbasis web dengan konsep **Interactive 
 ## 🛠️ Tech Stack
 
 ### Frontend
-| Teknologi | Fungsi |
-|---|---|
-| **Vue.js 3** | UI framework (Composition API + `<script setup>`) |
-| **Vite** | Build tool & dev server |
-| **Pinia** | State management |
-| **Vue Router** | Client-side routing |
-| **qrcode.vue** | Generate QR Code SVG |
+
+| Teknologi      | Fungsi                                            |
+| -------------- | ------------------------------------------------- |
+| **Vue.js 3**   | UI framework (Composition API + `<script setup>`) |
+| **Vite**       | Build tool & dev server                           |
+| **Pinia**      | State management                                  |
+| **Vue Router** | Client-side routing                               |
+| **qrcode.vue** | Generate QR Code SVG                              |
 
 ### Backend / Database
-| Teknologi | Fungsi |
-|---|---|
+
+| Teknologi    | Fungsi                                                  |
+| ------------ | ------------------------------------------------------- |
 | **Supabase** | PostgreSQL database + REST API (langsung dari frontend) |
 
 ### Deployment
-| Teknologi | Fungsi |
-|---|---|
+
+| Teknologi  | Fungsi                            |
+| ---------- | --------------------------------- |
 | **Vercel** | Hosting & auto-deploy dari GitHub |
 
 ### Admin Tools
-| Teknologi | Fungsi |
-|---|---|
+
+| Teknologi        | Fungsi                                  |
+| ---------------- | --------------------------------------- |
 | **html5-qrcode** | Camera-based QR Code scanner di browser |
 
 ---
@@ -123,6 +130,7 @@ undangan-digital/
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - **Node.js** v18+
 - **npm** v9+
 - Akun **Supabase** (gratis)
@@ -170,26 +178,28 @@ Aplikasi berjalan di: http://localhost:3000
 ## 🗄️ Database (Supabase)
 
 ### Tabel `rsvp`
-| Kolom | Tipe | Deskripsi |
-|---|---|---|
-| id | UUID (PK) | Auto generate |
-| code | TEXT | Kode unik tamu |
-| name | TEXT | Nama tamu |
-| phone | TEXT | Nomor telepon |
-| attendance | TEXT | `ACCEPT` atau `DECLINE` |
-| guest_count | INTEGER | Jumlah tamu (pax) |
-| message | TEXT | Ucapan/doa |
-| created_at | TIMESTAMPTZ | Timestamp |
+
+| Kolom       | Tipe        | Deskripsi               |
+| ----------- | ----------- | ----------------------- |
+| id          | UUID (PK)   | Auto generate           |
+| code        | TEXT        | Kode unik tamu          |
+| name        | TEXT        | Nama tamu               |
+| phone       | TEXT        | Nomor telepon           |
+| attendance  | TEXT        | `ACCEPT` atau `DECLINE` |
+| guest_count | INTEGER     | Jumlah tamu (pax)       |
+| message     | TEXT        | Ucapan/doa              |
+| created_at  | TIMESTAMPTZ | Timestamp               |
 
 ### Tabel `messages`
-| Kolom | Tipe | Deskripsi |
-|---|---|---|
-| id | UUID (PK) | Auto generate |
-| rsvp_id | UUID (FK) | Relasi ke tabel rsvp |
-| name | TEXT | Nama pengirim |
-| code | TEXT | Kode tamu |
-| message | TEXT | Isi ucapan |
-| created_at | TIMESTAMPTZ | Timestamp |
+
+| Kolom      | Tipe        | Deskripsi            |
+| ---------- | ----------- | -------------------- |
+| id         | UUID (PK)   | Auto generate        |
+| rsvp_id    | UUID (FK)   | Relasi ke tabel rsvp |
+| name       | TEXT        | Nama pengirim        |
+| code       | TEXT        | Kode tamu            |
+| message    | TEXT        | Isi ucapan           |
+| created_at | TIMESTAMPTZ | Timestamp            |
 
 ---
 
