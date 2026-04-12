@@ -60,8 +60,9 @@ onMounted(() => {
 .preloader {
   position: absolute;
   inset: 0;
-  background-size: cover;
+  background-size: 100% 100%;
   background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   align-items: center;

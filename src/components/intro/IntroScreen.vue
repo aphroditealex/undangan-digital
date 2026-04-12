@@ -67,8 +67,8 @@ function enterRoom() {
 .intro-screen {
   position: absolute;
   inset: 0;
-  background-size: contain;
-  background-position: center top;
+  background-size: 100% 100%;
+  background-position: center;
   background-repeat: no-repeat;
   /* background-color: #c8b8a8; */
   display: flex;

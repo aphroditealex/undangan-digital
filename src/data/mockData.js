@@ -237,7 +237,7 @@ export const mockInvitationData = {
         {
           id: "bride-groom",
           name: "Tentang Kami",
-          position: { top: "35%", left: "35%" },
+          position: { top: "29%", left: "35%" },
           size: { width: "25%", maxWidth: "25%" },
           image_url: "/assets/images/about-us.webp",
           modal_type: "bride-groom",
@@ -270,7 +270,7 @@ export const mockInvitationData = {
         {
           id: "gallery-book",
           name: "Galeri Cerita Kami",
-          position: { top: "31%", left: "12%" },
+          position: { top: "25%", left: "12%" },
           size: { width: "20%", maxWidth: "20%" },
           image_url: "/assets/images/gallery.webp",
           modal_type: "gallery-book",
@@ -281,7 +281,7 @@ export const mockInvitationData = {
         {
           id: "location",
           name: "Waktu & Tempat",
-          position: { top: "28%", right: "17%" },
+          position: { top: "16%", right: "17%" },
           size: { width: "23%", maxWidth: "23%" },
           image_url: "/assets/images/date-venue.webp",
           modal_type: "location",
@@ -292,7 +292,7 @@ export const mockInvitationData = {
         {
           id: "guestbook",
           name: "Konfirmasi Kehadiran",
-          position: { top: "58%", right: "12%" },
+          position: { top: "48%", right: "13%" },
           size: { width: "22%", maxWidth: "22%" },
           image_url: "/assets/images/rsvp.webp",
           modal_type: "guestbook",
@@ -303,7 +303,7 @@ export const mockInvitationData = {
         {
           id: "giftbox",
           name: "Kado & Doa dari Jauh",
-          position: { right: "1%", bottom: "1%" },
+          position: { right: "1%", bottom: "2%" },
           size: { width: "25%", maxWidth: "25%" },
           image_url: "/assets/images/gift.webp",
           modal_type: "giftbox",

@@ -127,8 +127,9 @@ function getRandomSparkleStyle(i) {
 .room-background {
   flex: 1;
   position: relative;
-  background-size: cover;
-  background-position: center top;
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
   overflow: hidden;
 }
 

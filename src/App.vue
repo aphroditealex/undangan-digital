@@ -10,7 +10,7 @@
   margin: 0 auto;
   display: flex;
   justify-content: center;
-  background: #f5f5f5; /* Light background outside the mobile wrapper */
+  background: #1a1a2e;
 }
 
 /* Ensure mobile shell only applies to the app-container (inside views) */
