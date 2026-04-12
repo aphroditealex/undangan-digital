@@ -1,8 +1,8 @@
 # 💍 Undangan Digital
 
-Undangan pernikahan digital interaktif berbasis web dengan konsep **Interactive Room** — tamu dapat menjelajahi ruangan virtual, mengklik dekorasi untuk melihat informasi acara, mengisi RSVP, dan mengirim ucapan secara real-time.
+Undangan pernikahan digital interaktif berbasis web dengan konsep **Interactive Room** — tamu dapat menjelajahi ruangan virtual, mengklik dekorasi untuk melihat informasi acara, mengisi RSVP, dan mengirim ucapan secara langsung.
 
-Terinspirasi dari [abadikan.id](https://abadikan.id) template Aruma.
+> **Live Demo**: [undangan-digital.vercel.app](https://undangan-digital.vercel.app)
 
 ---
 
@@ -11,11 +11,11 @@ Terinspirasi dari [abadikan.id](https://abadikan.id) template Aruma.
 ### 🎨 Frontend (Guest-Facing)
 - **Preloader Screen** — Animasi loading dengan dekorasi pendulum
 - **Intro / Cover Screen** — Halaman pembuka dengan nama tamu & tombol "Buka Undangan"
-- **Interactive Room** — Ruangan virtual dengan dekorasi yang bisa diklik untuk membuka informasi
-- **Night / Day Mode** — Toggle mode gelap dengan overlay yang tidak mempengaruhi dekorasi
-- **Floating Wishes** — Ucapan tamu yang tampil secara real-time dan bergantian
+- **Interactive Room** — Ruangan virtual dengan dekorasi yang bisa diklik
+- **Night / Day Mode** — Toggle mode gelap dengan overlay transparan
+- **Floating Wishes** — Ucapan tamu yang tampil bergantian secara otomatis
 - **Music Player** — Background music otomatis saat masuk ruangan
-- **Zoom Prevention** — Mencegah pinch-to-zoom dan Ctrl+/- agar layout tetap konsisten
+- **Zoom Prevention** — Mencegah pinch-to-zoom dan Ctrl+/- agar layout konsisten
 
 ### 📋 Modal System
 | Modal | Fungsi |
@@ -28,41 +28,38 @@ Terinspirasi dari [abadikan.id](https://abadikan.id) template Aruma.
 | **Gift** | Info rekening untuk transfer digital |
 | **QR Code** | QR Code kehadiran untuk check-in di hari H |
 
-### 🔧 Backend & Admin
-- **Express.js API** — REST API untuk RSVP, messages, dan auth
-- **SQLite Database** — Penyimpanan data ringan tanpa setup server database
-- **Real-time WebSocket** — Ucapan tamu muncul secara live ke semua viewer (Socket.IO)
-- **Admin Dashboard** (`/admin`) — Statistik RSVP, tabel data tamu, dan tombol refresh
-- **Admin Login** (`/admin/login`) — Autentikasi untuk proteksi halaman admin
-- **QR Scanner** (`/admin/scanner`) — Scan QR Code tamu untuk check-in di hari H
+### 🔧 Admin Panel
+- **Dashboard** (`/admin`) — Statistik RSVP & tabel data tamu
+- **Login** (`/admin/login`) — Autentikasi untuk proteksi halaman admin
+- **QR Scanner** (`/admin/scanner`) — Scan QR Code tamu untuk check-in
 
 ---
 
 ## 🛠️ Tech Stack
 
 ### Frontend
-| Teknologi | Versi | Fungsi |
-|---|---|---|
-| **Vue.js 3** | ^3.5 | UI framework (Composition API + `<script setup>`) |
-| **Vite** | ^8.0 | Build tool & dev server |
-| **Pinia** | ^3.0 | State management |
-| **Vue Router** | ^5.0 | Client-side routing |
-| **qrcode.vue** | ^3.8 | Generate QR Code SVG |
-| **Socket.IO Client** | ^4.8 | Real-time WebSocket connection |
+| Teknologi | Fungsi |
+|---|---|
+| **Vue.js 3** | UI framework (Composition API + `<script setup>`) |
+| **Vite** | Build tool & dev server |
+| **Pinia** | State management |
+| **Vue Router** | Client-side routing |
+| **qrcode.vue** | Generate QR Code SVG |
 
-### Backend
-| Teknologi | Versi | Fungsi |
-|---|---|---|
-| **Express.js** | ^5.2 | HTTP server & REST API |
-| **better-sqlite3** | ^12.8 | SQLite database driver |
-| **Socket.IO** | ^4.8 | WebSocket server untuk real-time wishes |
-| **CORS** | ^2.8 | Cross-origin resource sharing |
+### Backend / Database
+| Teknologi | Fungsi |
+|---|---|
+| **Supabase** | PostgreSQL database + REST API (langsung dari frontend) |
+
+### Deployment
+| Teknologi | Fungsi |
+|---|---|
+| **Vercel** | Hosting & auto-deploy dari GitHub |
 
 ### Admin Tools
 | Teknologi | Fungsi |
 |---|---|
 | **html5-qrcode** | Camera-based QR Code scanner di browser |
-| **concurrently** | Menjalankan frontend + backend secara bersamaan |
 
 ---
 
@@ -71,25 +68,20 @@ Terinspirasi dari [abadikan.id](https://abadikan.id) template Aruma.
 ```
 undangan-digital/
 ├── public/
-│   └── assets/              # Static assets (gambar, musik, preloader)
+│   └── assets/              # Static assets
 │       ├── images/           # Foto mempelai, dekorasi room, gallery
 │       ├── music/            # Background music & sound effects
 │       └── preloader/        # Aset animasi preloader
 │
-├── server/                   # Backend Express.js
-│   ├── index.js              # Entry point server + Socket.IO setup
-│   ├── database.js           # SQLite config, queries, dan helpers
-│   ├── undangan.db           # SQLite database file
-│   └── routes/
-│       ├── auth.js           # POST /api/v1/auth/login
-│       ├── rsvp.js           # RSVP CRUD + check-in endpoint
-│       └── messages.js       # GET guest messages/wishes
+├── supabase/
+│   └── migration.sql         # SQL untuk setup tabel di Supabase
 │
-├── src/                      # Frontend Vue.js
+├── src/
 │   ├── App.vue               # Root component (router-view)
 │   ├── main.js               # Vue app entry point
+│   ├── lib/supabase.js       # Supabase client config
 │   ├── router/index.js       # Route definitions + auth guard
-│   ├── stores/invitation.js  # Pinia store (state + API calls)
+│   ├── stores/invitation.js  # Pinia store (state + Supabase queries)
 │   ├── data/mockData.js      # Mock invitation config data
 │   │
 │   ├── views/
@@ -119,6 +111,8 @@ undangan-digital/
 │           ├── MusicPlayer.vue
 │           └── NavigationControls.vue
 │
+├── .env.example              # Template environment variables
+├── vercel.json               # Vercel SPA routing config
 ├── index.html
 ├── package.json
 └── vite.config.js
@@ -129,95 +123,73 @@ undangan-digital/
 ## 🚀 Getting Started
 
 ### Prerequisites
-- **Node.js** v18+ (disarankan v20+)
+- **Node.js** v18+
 - **npm** v9+
+- Akun **Supabase** (gratis)
 
-### Installation
+### 1. Clone & Install
 
 ```bash
-# Clone repository
 git clone https://github.com/aphroditealex/undangan-digital.git
 cd undangan-digital
-
-# Install dependencies
 npm install
 ```
 
-### Development
+### 2. Setup Supabase
+
+1. Buat project baru di [supabase.com](https://supabase.com)
+2. Buka **SQL Editor** → jalankan isi file `supabase/migration.sql`
+3. Buka **Settings → API** → copy **Project URL** dan **anon public key**
+
+### 3. Environment Variables
+
+Buat file `.env` di root project:
+
+```env
+VITE_SUPABASE_URL=https://your-project-id.supabase.co
+VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIs...
+```
+
+### 4. Development
 
 ```bash
-# Jalankan frontend (Vite) + backend (Express) secara bersamaan
 npm run dev
 ```
 
-Aplikasi akan berjalan di:
-- 🌐 **Frontend**: http://localhost:3000
-- ⚙️ **Backend API**: http://localhost:3001
-- 🔐 **Admin Panel**: http://localhost:3000/admin
+Aplikasi berjalan di: http://localhost:3000
 
-### Production Build
+### 5. Deploy ke Vercel
 
-```bash
-# Build frontend untuk production
-npm run build
-
-# Preview hasil build
-npm run preview
-```
+1. Push ke GitHub
+2. Import repo di [vercel.com](https://vercel.com)
+3. Tambahkan **Environment Variables** (`VITE_SUPABASE_URL` dan `VITE_SUPABASE_ANON_KEY`)
+4. Deploy 🎉
 
 ---
 
-## 🔑 API Endpoints
-
-| Method | Endpoint | Deskripsi |
-|---|---|---|
-| `POST` | `/api/v1/auth/login` | Login admin |
-| `POST` | `/api/v1/rsvp` | Submit RSVP + ucapan |
-| `GET` | `/api/v1/rsvp` | Get semua data RSVP (admin) |
-| `GET` | `/api/v1/rsvp/check?code=XXX` | Cek apakah kode sudah RSVP |
-| `GET` | `/api/v1/rsvp/stats` | Statistik kehadiran |
-| `POST` | `/api/v1/rsvp/check-in` | Check-in tamu via QR scan |
-| `GET` | `/api/v1/messages` | Get daftar ucapan/wishes |
-| `GET` | `/api/health` | Health check server |
-
-### WebSocket Events
-| Event | Direction | Deskripsi |
-|---|---|---|
-| `new_wish` | Server → Client | Broadcast ucapan baru secara real-time |
-
----
-
-## 🗄️ Database
-
-Menggunakan **SQLite** (`server/undangan.db`) — tidak perlu setup MySQL/PostgreSQL.
+## 🗄️ Database (Supabase)
 
 ### Tabel `rsvp`
 | Kolom | Tipe | Deskripsi |
 |---|---|---|
-| id | INTEGER (PK) | Auto increment |
+| id | UUID (PK) | Auto generate |
 | code | TEXT | Kode unik tamu |
 | name | TEXT | Nama tamu |
 | phone | TEXT | Nomor telepon |
 | attendance | TEXT | `ACCEPT` atau `DECLINE` |
 | guest_count | INTEGER | Jumlah tamu (pax) |
 | message | TEXT | Ucapan/doa |
-| created_at | TEXT | Timestamp |
+| created_at | TIMESTAMPTZ | Timestamp |
 
 ### Tabel `messages`
 | Kolom | Tipe | Deskripsi |
 |---|---|---|
-| id | INTEGER (PK) | Auto increment |
-| rsvp_id | INTEGER (FK) | Relasi ke tabel rsvp |
+| id | UUID (PK) | Auto generate |
+| rsvp_id | UUID (FK) | Relasi ke tabel rsvp |
 | name | TEXT | Nama pengirim |
 | code | TEXT | Kode tamu |
 | message | TEXT | Isi ucapan |
-| created_at | TEXT | Timestamp |
-
-### Akses Database via Navicat
-1. Buat koneksi baru → pilih **SQLite**
-2. Type: **Existing Database File**
-3. Database File: `D:\Projects\undangan-digital\server\undangan.db`
-4. Username & Password: **kosongkan** (SQLite tidak memerlukan auth)
+| created_at | TIMESTAMPTZ | Timestamp |
 
 ---
 
@@ -227,16 +199,14 @@ Menggunakan **SQLite** (`server/undangan.db`) — tidak perlu setup MySQL/Postgr
 - [x] Modal system (Welcome, Bride-Groom, Gallery, Location, RSVP, Gift)
 - [x] Night/Day mode toggle
 - [x] Zoom prevention (keyboard, scroll, pinch)
-- [x] Backend API (Express + SQLite)
-- [x] RSVP form submission ke server
+- [x] RSVP form submission (Supabase)
 - [x] QR Code generation untuk kehadiran
-- [x] Real-time wishes via WebSocket (Socket.IO)
-- [x] Admin Dashboard dengan statistik & tabel data tamu
+- [x] Admin Dashboard dengan statistik & tabel data
 - [x] Admin authentication (login/logout)
-- [x] QR Scanner untuk check-in tamu di hari H
-- [ ] Deploy ke VPS / cloud hosting
-- [ ] Integrasi WhatsApp API untuk broadcast link undangan
-- [ ] Multi-template support (selain Aruma)
+- [x] QR Scanner untuk check-in tamu
+- [x] Deploy ke Vercel
+- [ ] Integrasi WhatsApp API untuk broadcast link
+- [ ] Multi-template support
 - [ ] Guest list management (CRUD dari admin)
 
 ---
