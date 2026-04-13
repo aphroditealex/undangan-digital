@@ -91,10 +91,10 @@ function enterRoom() {
 
 .intro-prefix {
   font-family: var(--font-display);
-  font-size: 14px;
+  font-size: clamp(10px, 3.5vw, 14px);
   font-weight: 700;
   color: #1a1a1a;
-  letter-spacing: 3px;
+  letter-spacing: clamp(1px, 1vw, 3px);
   text-transform: uppercase;
   margin-bottom: var(--space-xs);
   text-shadow: 0 1px 4px rgba(255, 255, 255, 0.5);
@@ -102,26 +102,26 @@ function enterRoom() {
 
 .intro-names {
   font-family: var(--font-display);
-  font-size: 32px;
+  font-size: clamp(22px, 7vw, 32px);
   font-weight: 900;
   color: #1a1a1a;
   line-height: 1.15;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: clamp(1px, 1vw, 2px);
   text-shadow: 0 1px 6px rgba(255, 255, 255, 0.6);
 }
 
 /* Guest greeting */
 .intro-guest-area {
   text-align: center;
-  width: 70%;
-  margin-top: var(--space-md);
+  width: 80%;
+  margin-top: clamp(20px, 3vw, var(--space-md));
   animation: fadeInUp 1s ease 0.2s both;
 }
 
 .intro-greeting {
   font-family: var(--font-body);
-  font-size: 16px;
+  font-size: clamp(13px, 4vw, 16px);
   font-weight: 700;
   color: #1a1a1a;
   margin-bottom: 2px;
@@ -130,7 +130,7 @@ function enterRoom() {
 
 .intro-guest-name {
   font-family: var(--font-display);
-  font-size: 20px;
+  font-size: clamp(16px, 5.5vw, 20px);
   font-weight: 700;
   color: #1a1a1a;
   text-shadow: 0 1px 4px rgba(255, 255, 255, 0.5);
@@ -160,7 +160,7 @@ function enterRoom() {
 }
 
 .start-btn-img {
-  width: 160px;
+  width: clamp(120px, 45vw, 160px);
   height: auto;
   filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
 }

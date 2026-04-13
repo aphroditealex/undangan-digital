@@ -172,8 +172,8 @@ function getRandomSparkleStyle(i) {
 
 .add-wish-btn,
 .toggle-wishes-btn {
-  width: 36px;
-  height: 36px;
+  width: clamp(30px, 8vw, 36px);
+  height: clamp(30px, 8vw, 36px);
   border: 1.5px solid var(--color-primary);
   border-radius: var(--radius-sm);
   background: var(--color-white);
@@ -186,10 +186,10 @@ function getRandomSparkleStyle(i) {
 }
 
 .wishes-label-btn {
-  font-size: 13px;
+  font-size: clamp(11px, 3vw, 13px);
   font-weight: 500;
   color: var(--color-text);
-  padding: var(--space-sm) var(--space-md);
+  padding: clamp(6px, 1.5vw, 8px) clamp(10px, 2.5vw, 16px);
   background: var(--color-white);
   border: 1.5px solid var(--color-primary);
   border-radius: var(--radius-sm);

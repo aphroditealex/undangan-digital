@@ -233,18 +233,18 @@ export const mockInvitationData = {
         toggle_light: { visible: true },
         toggle_music: { visible: true }
       },
-      decorations: [
-        {
-          id: "bride-groom",
-          name: "Tentang Kami",
-          position: { top: "29%", left: "35%" },
-          size: { width: "25%", maxWidth: "25%" },
-          image_url: "/assets/images/about-us.webp",
-          modal_type: "bride-groom",
-          description: "Lihat momen spesial kami sebagai pasangan yang sedang berbahagia.",
-          zIndex: 20,
-          animations: { hover: true, breath: true }
-        },
+    decorations: [
+      {
+        id: "bride-groom",
+        name: "Tentang Kami",
+        position: { top: "clamp(120px, 34%, 200px)", left: "clamp(30%, 35%, 40%)" },
+        size: { width: "clamp(70px, 25%, 120px)", maxWidth: "120px" },
+        image_url: "/assets/images/about-us.webp",
+        modal_type: "bride-groom",
+        description: "Lihat momen spesial kami sebagai pasangan yang sedang berbahagia.",
+        zIndex: 20,
+        animations: { hover: true, breath: true }
+      },
         // {
         //   id: "dresscode",
         //   name: "Busana & Nuansa",
@@ -267,51 +267,51 @@ export const mockInvitationData = {
         //   zIndex: 20,
         //   animations: { hover: true, breath: true }
         // },
-        {
-          id: "gallery-book",
-          name: "Galeri Cerita Kami",
-          position: { top: "25%", left: "12%" },
-          size: { width: "20%", maxWidth: "20%" },
-          image_url: "/assets/images/gallery.webp",
-          modal_type: "gallery-book",
-          description: "Lihat momen kebersamaan kami yang penuh warna dan cerita.",
-          zIndex: 21,
-          animations: { hover: true, breath: true }
-        },
-        {
-          id: "location",
-          name: "Waktu & Tempat",
-          position: { top: "16%", right: "17%" },
-          size: { width: "23%", maxWidth: "23%" },
-          image_url: "/assets/images/date-venue.webp",
-          modal_type: "location",
-          description: "Lihat lokasi akad dan resepsi lengkap dengan petunjuk arah ke tempat acara.",
-          zIndex: 20,
-          animations: { hover: true, breath: true }
-        },
-        {
-          id: "guestbook",
-          name: "Konfirmasi Kehadiran",
-          position: { top: "48%", right: "13%" },
-          size: { width: "22%", maxWidth: "22%" },
-          image_url: "/assets/images/rsvp.webp",
-          modal_type: "guestbook",
-          description: "Tinggalkan pesan atau doa hangat untuk kami berdua.",
-          zIndex: 20,
-          animations: { hover: true, breath: true }
-        },
-        {
-          id: "giftbox",
-          name: "Kado & Doa dari Jauh",
-          position: { right: "1%", bottom: "2%" },
-          size: { width: "25%", maxWidth: "25%" },
-          image_url: "/assets/images/gift.webp",
-          modal_type: "giftbox",
-          description: "Kirim hadiah atau dukungan dari jauh dengan penuh cinta.",
-          zIndex: 20,
-          animations: { hover: true, breath: true }
-        }
-      ],
+      {
+        id: "gallery-book",
+        name: "Galeri Cerita Kami",
+        position: { top: "clamp(100px, 25%, 170px)", left: "clamp(5%, 12%, 18%)" },
+        size: { width: "clamp(60px, 20%, 90px)", maxWidth: "90px" },
+        image_url: "/assets/images/gallery.webp",
+        modal_type: "gallery-book",
+        description: "Lihat momen kebersamaan kami yang penuh warna dan cerita.",
+        zIndex: 21,
+        animations: { hover: true, breath: true }
+      },
+      {
+        id: "location",
+        name: "Waktu & Tempat",
+        position: { top: "clamp(70px, 16%, 120px)", right: "clamp(10%, 17%, 25%)" },
+        size: { width: "clamp(65px, 23%, 100px)", maxWidth: "100px" },
+        image_url: "/assets/images/date-venue.webp",
+        modal_type: "location",
+        description: "Lihat lokasi akad dan resepsi lengkap dengan petunjuk arah ke tempat acara.",
+        zIndex: 20,
+        animations: { hover: true, breath: true }
+      },
+      {
+        id: "guestbook",
+        name: "Konfirmasi Kehadiran",
+        position: { top: "clamp(200px, 48%, 350px)", right: "clamp(8%, 13%, 20%)" },
+        size: { width: "clamp(65px, 22%, 95px)", maxWidth: "95px" },
+        image_url: "/assets/images/rsvp.webp",
+        modal_type: "guestbook",
+        description: "Tinggalkan pesan atau doa hangat untuk kami berdua.",
+        zIndex: 20,
+        animations: { hover: true, breath: true }
+      },
+      {
+        id: "giftbox",
+        name: "Kado & Doa dari Jauh",
+        position: { right: "clamp(2px, 1%, 10px)", bottom: "clamp(10px, 2%, 20px)" },
+        size: { width: "clamp(70px, 25%, 120px)", maxWidth: "120px" },
+        image_url: "/assets/images/gift.webp",
+        modal_type: "giftbox",
+        description: "Kirim hadiah atau dukungan dari jauh dengan penuh cinta.",
+        zIndex: 20,
+        animations: { hover: true, breath: true }
+      }
+    ],
       main_content: {
         background_url: "/assets/images/background.webp"
       }

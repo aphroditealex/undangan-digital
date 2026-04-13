@@ -79,15 +79,15 @@ const decorationStyle = computed(() => {
 /* Tooltip */
 .decoration-tooltip {
   position: absolute;
-  bottom: -8px;
+  bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
   background: rgba(255, 255, 255, 0.95);
   color: var(--color-text);
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: clamp(8px, 2.5vw, 10px);
   font-weight: 600;
-  padding: 3px 10px;
+  padding: clamp(2px, 1vw, 4px) clamp(6px, 2vw, 10px);
   border-radius: 10px;
   white-space: nowrap;
   box-shadow: var(--shadow-sm);
