@@ -8,7 +8,7 @@
           <span class="dot dot-yellow"></span>
           <span class="dot dot-green"></span>
         </div>
-        <span class="modal-header-title">undangan.digital</span>
+        <span class="modal-header-title">Dikondangin</span>
         <div class="window-dots-placeholder"></div>
       </div>
 
