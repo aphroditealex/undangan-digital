@@ -9,7 +9,7 @@
   --color-primary-dark: #e8758a;
   --color-primary-light: #fdb5c2;
   --color-accent: #4DABF7;
-  --color-accent-glow: rgba(77, 171, 247, 0.6);
+  --color-accent-glow: rgba(255, 200, 110, 0.75);
   --color-bg-dark: #1a1a2e;
   --color-bg-overlay: rgba(0, 0, 0, 0.5);
   --color-text: #333333;
@@ -153,7 +153,7 @@ a {
 /* Glow pulsing for clickable items */
 @keyframes glowPulse {
   0%, 100% { filter: drop-shadow(0 0 8px var(--color-accent-glow)); }
-  50% { filter: drop-shadow(0 0 16px var(--color-accent-glow)) drop-shadow(0 0 24px rgba(77, 171, 247, 0.3)); }
+  50% { filter: drop-shadow(0 0 16px var(--color-accent-glow)) drop-shadow(0 0 24px rgba(255, 180, 80, 0.35)); }
 }
 
 /* Sparkle effect */

@@ -6,21 +6,23 @@
     role="button"
     :aria-label="decoration.name"
   >
-    <img
-      :src="decoration.image_url"
-      :alt="decoration.name"
-      class="decoration-image"
-      :class="{
-        'animate-breath': decoration.animations?.breath,
-        'animate-hover': decoration.animations?.hover,
-      }"
-    />
+    <div class="decoration-tilt" :style="tiltStyle">
+      <img
+        :src="decoration.image_url"
+        :alt="decoration.name"
+        class="decoration-image"
+        :class="{
+          'animate-breath': decoration.animations?.breath,
+          'animate-hover': decoration.animations?.hover,
+        }"
+      />
+    </div>
     <span class="decoration-tooltip">{{ decoration.name }}</span>
   </div>
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, onMounted, onUnmounted, ref } from "vue";
 
 const props = defineProps({
   decoration: {
@@ -31,9 +33,30 @@ const props = defineProps({
 
 defineEmits(["click"]);
 
+// Track viewport width so per-breakpoint overrides react to resize/devtools
+const viewportWidth = ref(window.innerWidth);
+function onResize() {
+  viewportWidth.value = window.innerWidth;
+}
+onMounted(() => window.addEventListener("resize", onResize));
+onUnmounted(() => window.removeEventListener("resize", onResize));
+
+// Pick the override with the largest minWidth <= viewport (mobile-first)
+const activeBreakpoint = computed(() => {
+  const bps = props.decoration.breakpoints;
+  if (!bps?.length) return null;
+  return [...bps]
+    .sort((a, b) => a.minWidth - b.minWidth)
+    .reduce(
+      (active, bp) => (viewportWidth.value >= bp.minWidth ? bp : active),
+      null
+    );
+});
+
 const decorationStyle = computed(() => {
-  const pos = props.decoration.position || {};
-  const size = props.decoration.size || {};
+  const bp = activeBreakpoint.value;
+  const pos = { ...(props.decoration.position || {}), ...(bp?.position || {}) };
+  const size = { ...(props.decoration.size || {}), ...(bp?.size || {}) };
   return {
     position: "absolute",
     top: pos.top || "auto",
@@ -44,7 +67,15 @@ const decorationStyle = computed(() => {
     maxWidth: size.maxWidth || "20%",
     zIndex: props.decoration.zIndex || 10,
     cursor: "pointer",
+    perspective: "600px",
   };
+});
+
+// Perspective tilt so assets follow room angles (wall, floor, table)
+const tiltStyle = computed(() => {
+  const p = props.decoration.perspective;
+  if (!p) return {};
+  return { transform: p.transform };
 });
 </script>
 
@@ -55,6 +86,12 @@ const decorationStyle = computed(() => {
 
 .room-decoration:hover {
   transform: scale(1.08);
+}
+
+/* Wrapper carrying the 3D tilt so hover scale & breath don't override it */
+.decoration-tilt {
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 .decoration-image {
@@ -73,7 +110,7 @@ const decorationStyle = computed(() => {
 
 .room-decoration:hover .decoration-image {
   filter: drop-shadow(0 0 16px var(--color-accent-glow))
-    drop-shadow(0 0 30px rgba(77, 171, 247, 0.4));
+    drop-shadow(0 0 30px rgba(255, 180, 80, 0.45));
 }
 
 /* Tooltip */

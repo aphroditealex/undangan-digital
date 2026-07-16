@@ -171,7 +171,17 @@ export const useInvitationStore = defineStore('invitation', () => {
     currentScreen.value = screen
   }
 
+  // Click sound — single instance, rewound on each play so rapid clicks still sound
+  const clickSound = new Audio('/assets/music/waterdrop-click.mp3')
+  clickSound.volume = 0.3
+
+  function playClickSound() {
+    clickSound.currentTime = 0
+    clickSound.play().catch(() => {})
+  }
+
   function openModal(modalType) {
+    playClickSound()
     activeModal.value = modalType
   }
 
@@ -184,10 +194,12 @@ export const useInvitationStore = defineStore('invitation', () => {
   }
 
   function toggleLight() {
+    playClickSound()
     isLightOn.value = !isLightOn.value
   }
 
   function toggleWishes() {
+    playClickSound()
     showWishes.value = !showWishes.value
   }
 
@@ -230,6 +242,7 @@ export const useInvitationStore = defineStore('invitation', () => {
     setScreen,
     openModal,
     closeModal,
+    playClickSound,
     toggleMusic,
     toggleLight,
     toggleWishes,

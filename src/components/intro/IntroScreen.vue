@@ -46,9 +46,7 @@ const config = computed(() => store.introConfig);
 
 function enterRoom() {
   // Play click sound
-  const audio = new Audio("/assets/music/waterdrop-click.mp3");
-  audio.volume = 0.3;
-  audio.play().catch(() => {});
+  store.playClickSound();
 
   // Start music
   store.toggleMusic();
@@ -143,7 +141,7 @@ function enterRoom() {
 
 /* Button at bottom */
 .intro-button-wrapper {
-  padding-bottom: 12%;
+  padding-bottom: 18%;
   animation: fadeInUp 1s ease 0.4s both;
 }
 

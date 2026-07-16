@@ -131,7 +131,7 @@ onMounted(() => {
 
 .loading-bar {
   width: 160px;
-  height: 4px;
+  height: 10px;
   background: rgba(255, 255, 255, 0.2);
   border-radius: 2px;
   overflow: hidden;

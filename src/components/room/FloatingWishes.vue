@@ -72,7 +72,7 @@ onUnmounted(() => {
 .wish-author {
   display: inline-block;
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   color: var(--color-primary-dark);
   background: var(--color-rose-light);
@@ -84,7 +84,7 @@ onUnmounted(() => {
 
 .wish-message {
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: 10px;
   color: var(--color-text);
   line-height: 1.4;
   margin-top: 4px;

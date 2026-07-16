@@ -237,13 +237,22 @@ export const mockInvitationData = {
       {
         id: "bride-groom",
         name: "Tentang Kami",
-        position: { top: "clamp(120px, 34%, 200px)", left: "clamp(30%, 35%, 40%)" },
-        size: { width: "clamp(70px, 25%, 120px)", maxWidth: "120px" },
+        position: { top: "30%", left: "32%" },
+        size: { width: "32%", maxWidth: "none" },
+        // Fine-tune posisi/ukuran per lebar viewport (mobile-first, minWidth terbesar yg cocok menang)
+        breakpoints: [
+          { minWidth: 375, position: { top: "29%", left: "33%" }, size: { width: "30%" } },
+          { minWidth: 425, position: { top: "28%", left: "34%" }, size: { width: "29%" } },
+          { minWidth: 768, position: { top: "26%", left: "34%" }, size: { width: "28%" } },
+          { minWidth: 1024, position: { top: "27%", left: "34%" }, size: { width: "28%" } }
+        ],
         image_url: "/assets/images/about-us.webp",
         modal_type: "bride-groom",
         description: "Lihat momen spesial kami sebagai pasangan yang sedang berbahagia.",
         zIndex: 20,
-        animations: { hover: true, breath: true }
+        animations: { hover: true, breath: true },
+        // Berdiri di lantai dekat meja — hampir frontal, sedikit mengikuti sudut ruangan
+        perspective: { transform: "rotateY(35deg) rotateZ(-8deg)" }
       },
         // {
         //   id: "dresscode",
@@ -270,46 +279,78 @@ export const mockInvitationData = {
       {
         id: "gallery-book",
         name: "Galeri Cerita Kami",
-        position: { top: "clamp(100px, 25%, 170px)", left: "clamp(5%, 12%, 18%)" },
-        size: { width: "clamp(60px, 20%, 90px)", maxWidth: "90px" },
+        position: { top: "24%", left: "10%" },
+        size: { width: "26%", maxWidth: "none" },
+        breakpoints: [
+          { minWidth: 375, position: { top: "24.6%", left: "13%" }, size: { width: "21.9%" } },
+          { minWidth: 425, position: { top: "24.6%", left: "13%" }, size: { width: "21.9%" } },
+          { minWidth: 768, position: { top: "24.6%", left: "13%" }, size: { width: "21.9%" } },
+          { minWidth: 1024, position: { top: "24.6%", left: "13%" }, size: { width: "21.9%" } }
+        ],
         image_url: "/assets/images/gallery.webp",
         modal_type: "gallery-book",
         description: "Lihat momen kebersamaan kami yang penuh warna dan cerita.",
         zIndex: 21,
-        animations: { hover: true, breath: true }
+        animations: { hover: true, breath: true },
+        // Menempel dinding kiri (dinding menghadap kanan) — bingkai foto miring mengikuti dinding
+        perspective: { transform: "rotateY(35deg) rotateZ(-7deg)" }
       },
       {
         id: "location",
         name: "Waktu & Tempat",
-        position: { top: "clamp(70px, 16%, 120px)", right: "clamp(10%, 17%, 25%)" },
-        size: { width: "clamp(65px, 23%, 100px)", maxWidth: "100px" },
+        position: { top: "18%", right: "17%" },
+        size: { width: "26%", maxWidth: "none" },
+        breakpoints: [
+          { minWidth: 375, position: { top: "17%", right: "17%" }, size: { width: "24%" } },
+          { minWidth: 425, position: { top: "17%", right: "17%" }, size: { width: "23%" } },
+          { minWidth: 768, position: { top: "17%", right: "17%" }, size: { width: "22%" } },
+          { minWidth: 1024, position: { top: "15%", right: "17%" }, size: { width: "22%" } }
+        ],
         image_url: "/assets/images/date-venue.webp",
         modal_type: "location",
         description: "Lihat lokasi akad dan resepsi lengkap dengan petunjuk arah ke tempat acara.",
         zIndex: 20,
-        animations: { hover: true, breath: true }
+        animations: { hover: true, breath: true },
+        // Dekat dinding/jendela kanan (menghadap kiri) — miring berlawanan arah dinding kiri
+        perspective: { transform: "rotateY(-170deg) rotateZ(-8deg)" }
       },
       {
         id: "guestbook",
         name: "Konfirmasi Kehadiran",
-        position: { top: "clamp(200px, 48%, 350px)", right: "clamp(8%, 13%, 20%)" },
-        size: { width: "clamp(65px, 22%, 95px)", maxWidth: "95px" },
+        position: { top: "49%", right: "12%" },
+        size: { width: "24%", maxWidth: "none" },
+        breakpoints: [
+          { minWidth: 375, position: { top: "50%", right: "14%" }, size: { width: "22%" } },
+          { minWidth: 425, position: { top: "48%", right: "15%" }, size: { width: "22%" } },
+          { minWidth: 768, position: { top: "46%", right: "14%" }, size: { width: "22%" } },
+          { minWidth: 1024, position: { top: "47%", right: "14%" }, size: { width: "22%" } }
+        ],
         image_url: "/assets/images/rsvp.webp",
         modal_type: "guestbook",
         description: "Tinggalkan pesan atau doa hangat untuk kami berdua.",
         zIndex: 20,
-        animations: { hover: true, breath: true }
+        animations: { hover: true, breath: true },
+        // Sisi kanan ruangan — kipas menghadap sedikit ke kiri mengikuti sudut ruang
+        perspective: { transform: "rotateY(-20deg) rotateZ(11deg)" }
       },
       {
         id: "giftbox",
         name: "Kado & Doa dari Jauh",
-        position: { right: "clamp(2px, 1%, 10px)", bottom: "clamp(10px, 2%, 20px)" },
-        size: { width: "clamp(70px, 25%, 120px)", maxWidth: "120px" },
+        position: { right: "1%", bottom: "2%" },
+        size: { width: "25%", maxWidth: "none" },
+        breakpoints: [
+          { minWidth: 375, position: { right: "1%", bottom: "2%" }, size: { width: "25%" } },
+          { minWidth: 425, position: { right: "1%", bottom: "2%" }, size: { width: "25%" } },
+          { minWidth: 768, position: { right: "1%", bottom: "2%" }, size: { width: "25%" } },
+          { minWidth: 1024, position: { right: "1%", bottom: "2%" }, size: { width: "25%" } }
+        ],
         image_url: "/assets/images/gift.webp",
         modal_type: "giftbox",
         description: "Kirim hadiah atau dukungan dari jauh dengan penuh cinta.",
         zIndex: 20,
-        animations: { hover: true, breath: true }
+        animations: { hover: true, breath: true },
+        // Di lantai pojok kanan bawah — tampak sedikit dari atas, mengikuti bidang lantai
+        perspective: { transform: "rotateX(8deg) rotateY(-8deg)" }
       }
     ],
       main_content: {
